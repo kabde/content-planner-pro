@@ -180,6 +180,16 @@ function cpp_check_plugin_update( $transient ) {
 }
 add_filter( 'pre_set_site_transient_update_plugins', 'cpp_check_plugin_update' );
 
+// Force update check on admin pages (max once per hour)
+function cpp_force_update_check() {
+    $last = get_option( 'cpp_last_update_check', 0 );
+    if ( time() - $last > 3600 ) {
+        delete_site_transient( 'update_plugins' );
+        update_option( 'cpp_last_update_check', time() );
+    }
+}
+add_action( 'admin_init', 'cpp_force_update_check' );
+
 /**
  * Admin notice when not licensed
  */
