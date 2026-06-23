@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Content Planner Pro
  * Description: Editorial calendar, content board, and workflow management for WordPress.
- * Version:     2.0.0
+ * Version:     2.1.0
  * Author:      Abderrahim KHALID
  * Text Domain: content-planner-pro
  * Network:     true
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'CPP_VERSION', '2.0.0' );
+define( 'CPP_VERSION', '2.1.0' );
 define( 'CPP_FILE', __FILE__ );
 define( 'CPP_BASENAME', plugin_basename( __FILE__ ) );
 define( 'CPP_PATH', plugin_dir_path( __FILE__ ) );
