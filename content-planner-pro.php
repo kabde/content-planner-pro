@@ -23,6 +23,12 @@ define( 'CPP_URL',  plugin_dir_url( __FILE__ ) );
 define( 'CPP_CAPABILITY', 'manage_cpp' );
 define( 'CPP_API_URL', 'https://dp-starter.khalid.digital' );
 
+// Load textdomain
+function cpp_load_textdomain() {
+    load_plugin_textdomain( 'content-planner-pro', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'init', 'cpp_load_textdomain' );
+
 // License system FIRST
 require_once CPP_PATH . 'inc/license.php';
 

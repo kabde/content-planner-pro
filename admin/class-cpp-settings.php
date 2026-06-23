@@ -37,8 +37,8 @@ class CPP_Settings {
             // Settings becomes a submenu under it.
             $this->hook = add_submenu_page(
                 'cpp-calendar',
-                'Settings',
-                'Settings',
+                __( 'Settings', 'content-planner-pro' ),
+                __( 'Settings', 'content-planner-pro' ),
                 CPP_CAPABILITY,
                 'cpp-settings',
                 [ $this, 'render' ]
@@ -110,7 +110,7 @@ class CPP_Settings {
 
     public function render() {
         if ( ! current_user_can( CPP_CAPABILITY ) ) {
-            wp_die( 'You do not have sufficient permissions.' );
+            wp_die( esc_html__( 'You do not have sufficient permissions.', 'content-planner-pro' ) );
         }
 
         $licensed      = cpp_is_licensed();
@@ -120,10 +120,10 @@ class CPP_Settings {
         $s             = wp_parse_args( $settings, $defaults );
 
         $tabs = [
-            'license'  => [ 'label' => 'Licence',       'icon' => 'dashicons-lock' ],
-            'general'  => [ 'label' => 'Général',       'icon' => 'dashicons-admin-settings' ],
-            'statuses' => [ 'label' => 'Statuts',       'icon' => 'dashicons-tag' ],
-            'docs'     => [ 'label' => 'Documentation', 'icon' => 'dashicons-book' ],
+            'license'  => [ 'label' => __( 'License', 'content-planner-pro' ),       'icon' => 'dashicons-lock' ],
+            'general'  => [ 'label' => __( 'General', 'content-planner-pro' ),       'icon' => 'dashicons-admin-settings' ],
+            'statuses' => [ 'label' => __( 'Statuses', 'content-planner-pro' ),       'icon' => 'dashicons-tag' ],
+            'docs'     => [ 'label' => __( 'Documentation', 'content-planner-pro' ), 'icon' => 'dashicons-book' ],
         ];
 
         // Only show non-license tabs when licensed
@@ -213,25 +213,25 @@ class CPP_Settings {
                     <!-- License Tab -->
                     <div id="cpp-tab-license" class="cpp-tab-content">
                         <div class="cpp-admin-section">
-                            <h2>Licence</h2>
+                            <h2><?php esc_html_e( 'License', 'content-planner-pro' ); ?></h2>
                             <div class="cpp-license-card">
                                 <?php if ( $licensed ) : ?>
                                     <div style="text-align:center;margin-bottom:20px;">
-                                        <span class="cpp-license-active">&#10003; Licence Active</span>
+                                        <span class="cpp-license-active">&#10003; <?php esc_html_e( 'License Active', 'content-planner-pro' ); ?></span>
                                     </div>
                                     <table class="form-table" style="margin:0;">
                                         <tr>
-                                            <th>Cl&eacute; de licence</th>
+                                            <th><?php esc_html_e( 'License key', 'content-planner-pro' ); ?></th>
                                             <td><?php
 $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
 ?><code style="font-size:14px;"><?php echo esc_html($masked); ?></code></td>
                                         </tr>
                                         <tr>
-                                            <th>Domaine</th>
+                                            <th><?php esc_html_e( 'Domain', 'content-planner-pro' ); ?></th>
                                             <td><?php echo esc_html( home_url() ); ?></td>
                                         </tr>
                                         <tr>
-                                            <th>Expiration</th>
+                                            <th><?php esc_html_e( 'Expiration', 'content-planner-pro' ); ?></th>
                                             <td>
                                                 <?php
                                                 $expires = get_option( 'cpp_license_expires_at', '' );
@@ -239,30 +239,47 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                                                     $days = (int) ceil( ( strtotime( $expires ) - time() ) / 86400 );
                                                     $date_formatted = wp_date( 'd F Y', strtotime( $expires ) );
                                                     if ( $days <= 0 ) {
-                                                        echo '<span style="color:#dc2626;font-weight:600;">Expirée le ' . esc_html( $date_formatted ) . '</span>';
+                                                        echo '<span style="color:#dc2626;font-weight:600;">';
+                                                        /* translators: %s: formatted expiration date */
+                                                        printf( esc_html__( 'Expired on %s', 'content-planner-pro' ), esc_html( $date_formatted ) );
+                                                        echo '</span>';
                                                     } elseif ( $days <= 30 ) {
-                                                        echo '<span style="color:#d97706;font-weight:600;">' . esc_html( $date_formatted ) . ' (' . $days . ' jour' . ($days > 1 ? 's' : '') . ' restants)</span>';
+                                                        echo '<span style="color:#d97706;font-weight:600;">';
+                                                        /* translators: 1: formatted date, 2: number of days remaining */
+                                                        printf(
+                                                            esc_html( _n( '%1$s (%2$d day remaining)', '%1$s (%2$d days remaining)', $days, 'content-planner-pro' ) ),
+                                                            esc_html( $date_formatted ),
+                                                            $days
+                                                        );
+                                                        echo '</span>';
                                                     } else {
-                                                        echo '<span style="color:#16a34a;">' . esc_html( $date_formatted ) . ' (' . $days . ' jours restants)</span>';
+                                                        echo '<span style="color:#16a34a;">';
+                                                        /* translators: 1: formatted date, 2: number of days remaining */
+                                                        printf(
+                                                            esc_html( _n( '%1$s (%2$d day remaining)', '%1$s (%2$d days remaining)', $days, 'content-planner-pro' ) ),
+                                                            esc_html( $date_formatted ),
+                                                            $days
+                                                        );
+                                                        echo '</span>';
                                                     }
                                                 } else {
-                                                    echo '<span style="color:#16a34a;">Lifetime (pas d\'expiration)</span>';
+                                                    echo '<span style="color:#16a34a;">' . esc_html__( 'Lifetime (no expiration)', 'content-planner-pro' ) . '</span>';
                                                 }
                                                 ?>
                                             </td>
                                         </tr>
                                     </table>
                                     <p style="margin-top:20px;">
-                                        <button type="button" id="cpp-deactivate-btn" class="button button-secondary" style="color:#d63638;">D&eacute;sactiver la licence</button>
+                                        <button type="button" id="cpp-deactivate-btn" class="button button-secondary" style="color:#d63638;"><?php esc_html_e( 'Deactivate license', 'content-planner-pro' ); ?></button>
                                     </p>
                                 <?php else : ?>
-                                    <h2 style="margin-top:0;">Activez votre licence</h2>
-                                    <p>Entrez votre cl&eacute; de licence pour activer Content Planner Pro.</p>
+                                    <h2 style="margin-top:0;"><?php esc_html_e( 'Activate your license', 'content-planner-pro' ); ?></h2>
+                                    <p><?php esc_html_e( 'Enter your license key to activate Content Planner Pro.', 'content-planner-pro' ); ?></p>
                                     <p>
                                         <input type="text" id="cpp-license-key" placeholder="CPP-XXXX-XXXX-XXXX" style="width:100%;font-size:16px;padding:8px 12px;font-family:monospace;text-transform:uppercase;" maxlength="19">
                                     </p>
                                     <p>
-                                        <button type="button" id="cpp-activate-btn" class="button button-primary button-hero" style="width:100%;">Activer la licence</button>
+                                        <button type="button" id="cpp-activate-btn" class="button button-primary button-hero" style="width:100%;"><?php esc_html_e( 'Activate license', 'content-planner-pro' ); ?></button>
                                     </p>
                                     <div id="cpp-license-message" style="margin-top:15px;display:none;"></div>
                                 <?php endif; ?>
@@ -280,10 +297,10 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                         <!-- General Tab -->
                         <div id="cpp-tab-general" class="cpp-tab-content">
                             <div class="cpp-admin-section">
-                                <h2>Param&egrave;tres g&eacute;n&eacute;raux</h2>
+                                <h2><?php esc_html_e( 'General settings', 'content-planner-pro' ); ?></h2>
                                 <table class="form-table">
                                     <tr>
-                                        <th scope="row">Types de contenu</th>
+                                        <th scope="row"><?php esc_html_e( 'Content types', 'content-planner-pro' ); ?></th>
                                         <td>
                                             <?php foreach ( $post_types as $pt_slug => $pt_obj ) : ?>
                                                 <label style="display:block;margin-bottom:6px;">
@@ -291,61 +308,61 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                                                     <?php echo esc_html( $pt_obj->labels->name ); ?> <code style="font-size:11px;color:#9ca3af;">(<?php echo esc_html( $pt_slug ); ?>)</code>
                                                 </label>
                                             <?php endforeach; ?>
-                                            <p class="description">S&eacute;lectionnez les types de contenu &agrave; afficher dans le calendrier.</p>
+                                            <p class="description"><?php esc_html_e( 'Select the content types to display in the calendar.', 'content-planner-pro' ); ?></p>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Vue par d&eacute;faut</th>
+                                        <th scope="row"><?php esc_html_e( 'Default view', 'content-planner-pro' ); ?></th>
                                         <td>
                                             <label style="display:block;margin-bottom:6px;">
                                                 <input type="radio" name="cpp_settings[default_view]" value="calendar" <?php checked( $s['default_view'], 'calendar' ); ?>>
-                                                Calendrier
+                                                <?php esc_html_e( 'Calendar', 'content-planner-pro' ); ?>
                                             </label>
                                             <label style="display:block;">
                                                 <input type="radio" name="cpp_settings[default_view]" value="board" <?php checked( $s['default_view'], 'board' ); ?>>
-                                                Board (Kanban)
+                                                <?php esc_html_e( 'Board (Kanban)', 'content-planner-pro' ); ?>
                                             </label>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Premier jour de la semaine</th>
+                                        <th scope="row"><?php esc_html_e( 'First day of the week', 'content-planner-pro' ); ?></th>
                                         <td>
                                             <select name="cpp_settings[first_day]">
-                                                <option value="0" <?php selected( $s['first_day'], '0' ); ?>>Dimanche</option>
-                                                <option value="1" <?php selected( $s['first_day'], '1' ); ?>>Lundi</option>
+                                                <option value="0" <?php selected( $s['first_day'], '0' ); ?>><?php esc_html_e( 'Sunday', 'content-planner-pro' ); ?></option>
+                                                <option value="1" <?php selected( $s['first_day'], '1' ); ?>><?php esc_html_e( 'Monday', 'content-planner-pro' ); ?></option>
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Afficher les publi&eacute;s</th>
+                                        <th scope="row"><?php esc_html_e( 'Show published', 'content-planner-pro' ); ?></th>
                                         <td>
                                             <label>
                                                 <input type="checkbox" name="cpp_settings[show_published]" value="1" <?php checked( $s['show_published'], '1' ); ?>>
-                                                Afficher les contenus d&eacute;j&agrave; publi&eacute;s dans le calendrier
+                                                <?php esc_html_e( 'Show already published content in the calendar', 'content-planner-pro' ); ?>
                                             </label>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="submit">
-                                <?php submit_button( 'Enregistrer', 'primary', 'submit', false ); ?>
+                                <?php submit_button( __( 'Save', 'content-planner-pro' ), 'primary', 'submit', false ); ?>
                             </div>
                         </div>
 
-                        <!-- Statuts Tab -->
+                        <!-- Statuses Tab -->
                         <div id="cpp-tab-statuses" class="cpp-tab-content">
                             <div class="cpp-admin-section">
-                                <h2>Statuts &eacute;ditoriaux</h2>
-                                <p style="color:#6b7280;margin-bottom:16px;">Les statuts &eacute;ditoriaux permettent de suivre l'avancement de vos contenus. Chaque statut est mapp&eacute; vers un statut WordPress natif.</p>
+                                <h2><?php esc_html_e( 'Editorial statuses', 'content-planner-pro' ); ?></h2>
+                                <p style="color:#6b7280;margin-bottom:16px;"><?php esc_html_e( 'Editorial statuses allow you to track the progress of your content. Each status maps to a native WordPress status.', 'content-planner-pro' ); ?></p>
 
                                 <table class="widefat striped cpp-statuses-table" style="max-width:700px;">
                                     <thead>
                                         <tr>
                                             <th style="width:40px;"></th>
-                                            <th>Ic&ocirc;ne</th>
-                                            <th>Label</th>
-                                            <th>Slug</th>
-                                            <th>Statut WordPress</th>
+                                            <th><?php esc_html_e( 'Icon', 'content-planner-pro' ); ?></th>
+                                            <th><?php esc_html_e( 'Label', 'content-planner-pro' ); ?></th>
+                                            <th><?php esc_html_e( 'Slug', 'content-planner-pro' ); ?></th>
+                                            <th><?php esc_html_e( 'WordPress status', 'content-planner-pro' ); ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -364,7 +381,7 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                                 </table>
 
                                 <p style="color:#9ca3af;margin-top:16px;font-size:13px;">
-                                    Les statuts ne sont pas modifiables dans cette version. Une future mise &agrave; jour permettra de personnaliser les statuts, couleurs et ic&ocirc;nes.
+                                    <?php esc_html_e( 'Statuses are not editable in this version. A future update will allow customizing statuses, colors, and icons.', 'content-planner-pro' ); ?>
                                 </p>
                             </div>
                         </div>
@@ -375,92 +392,98 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                     <div id="cpp-tab-docs" class="cpp-tab-content">
 
                         <div class="cpp-admin-section">
-                            <h2>Vue Calendrier</h2>
-                            <p style="color:#374151;line-height:1.8;">Le calendrier affiche vos contenus mois par mois. Chaque contenu appara&icirc;t sur la date &agrave; laquelle il est planifi&eacute;.</p>
+                            <h2><?php esc_html_e( 'Calendar View', 'content-planner-pro' ); ?></h2>
+                            <p style="color:#374151;line-height:1.8;"><?php esc_html_e( 'The calendar displays your content month by month. Each piece of content appears on the date it is scheduled.', 'content-planner-pro' ); ?></p>
                             <ul style="list-style:disc;padding-left:20px;color:#374151;line-height:2;">
-                                <li>Naviguez entre les mois avec les fl&egrave;ches <strong>&laquo; / &raquo;</strong></li>
-                                <li>Cliquez sur une date vide pour <strong>cr&eacute;er un nouveau contenu</strong></li>
-                                <li>Cliquez sur un contenu pour ouvrir le <strong>panneau de d&eacute;tail / &eacute;dition rapide</strong></li>
-                                <li>Les contenus sont color&eacute;s selon leur <strong>statut &eacute;ditorial</strong></li>
-                                <li>Les contenus en retard (deadline d&eacute;pass&eacute;e) sont marqu&eacute;s en <span style="color:#dc2626;font-weight:600;">rouge</span></li>
+                                <li><?php
+                                /* translators: %s: navigation arrows symbols */
+                                printf( esc_html__( 'Navigate between months using the %s arrows', 'content-planner-pro' ), '<strong>&laquo; / &raquo;</strong>' ); ?></li>
+                                <li><?php esc_html_e( 'Click on an empty date to create new content', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Click on content to open the detail / quick edit panel', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Content is color-coded by editorial status', 'content-planner-pro' ); ?></li>
+                                <li><?php printf( esc_html__( 'Overdue content (past deadline) is marked in %s', 'content-planner-pro' ), '<span style="color:#dc2626;font-weight:600;">' . esc_html__( 'red', 'content-planner-pro' ) . '</span>' ); ?></li>
                             </ul>
                         </div>
 
                         <div class="cpp-admin-section">
-                            <h2>Vue Board (Kanban)</h2>
-                            <p style="color:#374151;line-height:1.8;">Le board organise vos contenus en colonnes selon leur statut &eacute;ditorial.</p>
+                            <h2><?php esc_html_e( 'Board View (Kanban)', 'content-planner-pro' ); ?></h2>
+                            <p style="color:#374151;line-height:1.8;"><?php esc_html_e( 'The board organizes your content into columns by editorial status.', 'content-planner-pro' ); ?></p>
                             <ul style="list-style:disc;padding-left:20px;color:#374151;line-height:2;">
-                                <li>Chaque colonne repr&eacute;sente un <strong>statut</strong> (Id&eacute;e, R&eacute;daction, Relecture, Planifi&eacute;, Publi&eacute;)</li>
-                                <li>Glissez-d&eacute;posez un contenu entre les colonnes pour <strong>changer son statut</strong></li>
-                                <li>Le nombre de contenus par colonne est affich&eacute; dans l'en-t&ecirc;te</li>
+                                <li><?php esc_html_e( 'Each column represents a status (Idea, Drafting, Review, Scheduled, Published)', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Drag and drop content between columns to change its status', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'The number of items per column is shown in the header', 'content-planner-pro' ); ?></li>
                             </ul>
                         </div>
 
                         <div class="cpp-admin-section">
-                            <h2>Drag &amp; Drop</h2>
-                            <p style="color:#374151;line-height:1.8;">Le glisser-d&eacute;poser fonctionne dans les deux vues :</p>
+                            <h2><?php esc_html_e( 'Drag & Drop', 'content-planner-pro' ); ?></h2>
+                            <p style="color:#374151;line-height:1.8;"><?php esc_html_e( 'Drag and drop works in both views:', 'content-planner-pro' ); ?></p>
                             <ul style="list-style:disc;padding-left:20px;color:#374151;line-height:2;">
-                                <li><strong>Calendrier :</strong> d&eacute;placez un contenu vers une autre date pour changer sa date de publication</li>
-                                <li><strong>Board :</strong> d&eacute;placez un contenu vers une autre colonne pour changer son statut</li>
-                                <li>Les modifications sont <strong>sauvegard&eacute;es automatiquement</strong> via AJAX</li>
+                                <li><?php esc_html_e( 'Calendar: move content to another date to change its publication date', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Board: move content to another column to change its status', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Changes are saved automatically via AJAX', 'content-planner-pro' ); ?></li>
                             </ul>
                         </div>
 
                         <div class="cpp-admin-section">
-                            <h2>&Eacute;dition rapide</h2>
-                            <p style="color:#374151;line-height:1.8;">Cliquez sur un contenu pour ouvrir le panneau d'&eacute;dition rapide. Vous pouvez modifier :</p>
+                            <h2><?php esc_html_e( 'Quick Edit', 'content-planner-pro' ); ?></h2>
+                            <p style="color:#374151;line-height:1.8;"><?php esc_html_e( 'Click on content to open the quick edit panel. You can edit:', 'content-planner-pro' ); ?></p>
                             <ul style="list-style:disc;padding-left:20px;color:#374151;line-height:2;">
-                                <li><strong>Titre</strong> du contenu</li>
-                                <li><strong>Statut &eacute;ditorial</strong> (Id&eacute;e &rarr; R&eacute;daction &rarr; Relecture &rarr; Planifi&eacute; &rarr; Publi&eacute;)</li>
-                                <li><strong>Date planifi&eacute;e</strong> de publication</li>
-                                <li><strong>Deadline</strong> (date limite de r&eacute;daction)</li>
-                                <li><strong>Assign&eacute;</strong> &agrave; (auteur responsable)</li>
-                                <li><strong>Cat&eacute;gorie</strong></li>
-                                <li><strong>Priorit&eacute;</strong> (basse, normale, haute, urgente)</li>
-                                <li><strong>Notes</strong> internes</li>
+                                <li><?php esc_html_e( 'Content title', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Editorial status (Idea > Drafting > Review > Scheduled > Published)', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Scheduled publication date', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Deadline (writing due date)', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Assigned to (responsible author)', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Category', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Priority (low, normal, high, urgent)', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'Internal notes', 'content-planner-pro' ); ?></li>
                             </ul>
                         </div>
 
                         <div class="cpp-admin-section">
-                            <h2>Cr&eacute;ation de contenu</h2>
-                            <p style="color:#374151;line-height:1.8;">Deux fa&ccedil;ons de cr&eacute;er du contenu :</p>
+                            <h2><?php esc_html_e( 'Content Creation', 'content-planner-pro' ); ?></h2>
+                            <p style="color:#374151;line-height:1.8;"><?php esc_html_e( 'Two ways to create content:', 'content-planner-pro' ); ?></p>
                             <ol style="line-height:2;font-size:14px;color:#374151;">
-                                <li><strong>Depuis le calendrier :</strong> cliquez sur une date vide. Un nouveau brouillon est cr&eacute;&eacute; avec cette date.</li>
-                                <li><strong>Depuis le board :</strong> cliquez sur le bouton <strong>+</strong> dans une colonne de statut.</li>
+                                <li><?php esc_html_e( 'From the calendar: click on an empty date. A new draft is created with that date.', 'content-planner-pro' ); ?></li>
+                                <li><?php esc_html_e( 'From the board: click the + button in a status column.', 'content-planner-pro' ); ?></li>
                             </ol>
-                            <p style="color:#374151;">Le contenu est cr&eacute;&eacute; comme <strong>brouillon WordPress</strong> avec le statut &eacute;ditorial &laquo; Id&eacute;e &raquo; par d&eacute;faut.</p>
+                            <p style="color:#374151;"><?php esc_html_e( 'Content is created as a WordPress draft with the "Idea" editorial status by default.', 'content-planner-pro' ); ?></p>
                         </div>
 
                         <div class="cpp-admin-section">
-                            <h2>Statuts &eacute;ditoriaux</h2>
+                            <h2><?php esc_html_e( 'Editorial Statuses', 'content-planner-pro' ); ?></h2>
                             <table class="widefat striped" style="max-width:700px;">
                                 <thead>
-                                    <tr><th>Statut</th><th>Description</th><th>Statut WordPress</th></tr>
+                                    <tr>
+                                        <th><?php esc_html_e( 'Status', 'content-planner-pro' ); ?></th>
+                                        <th><?php esc_html_e( 'Description', 'content-planner-pro' ); ?></th>
+                                        <th><?php esc_html_e( 'WordPress status', 'content-planner-pro' ); ?></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><span style="color:#94a3b8;">&#9679;</span> Id&eacute;e</td>
-                                        <td>Contenu en phase d'id&eacute;ation, pas encore commenc&eacute;</td>
+                                        <td><span style="color:#94a3b8;">&#9679;</span> <?php esc_html_e( 'Idea', 'content-planner-pro' ); ?></td>
+                                        <td><?php esc_html_e( 'Content in the ideation phase, not yet started', 'content-planner-pro' ); ?></td>
                                         <td><code>draft</code></td>
                                     </tr>
                                     <tr>
-                                        <td><span style="color:#f59e0b;">&#9679;</span> R&eacute;daction</td>
-                                        <td>Contenu en cours de r&eacute;daction</td>
+                                        <td><span style="color:#f59e0b;">&#9679;</span> <?php esc_html_e( 'Drafting', 'content-planner-pro' ); ?></td>
+                                        <td><?php esc_html_e( 'Content currently being written', 'content-planner-pro' ); ?></td>
                                         <td><code>draft</code></td>
                                     </tr>
                                     <tr>
-                                        <td><span style="color:#f97316;">&#9679;</span> Relecture</td>
-                                        <td>Contenu termin&eacute;, en attente de validation</td>
+                                        <td><span style="color:#f97316;">&#9679;</span> <?php esc_html_e( 'Review', 'content-planner-pro' ); ?></td>
+                                        <td><?php esc_html_e( 'Content finished, awaiting approval', 'content-planner-pro' ); ?></td>
                                         <td><code>pending</code></td>
                                     </tr>
                                     <tr>
-                                        <td><span style="color:#3b82f6;">&#9679;</span> Planifi&eacute;</td>
-                                        <td>Contenu valid&eacute; et planifi&eacute; pour publication</td>
+                                        <td><span style="color:#3b82f6;">&#9679;</span> <?php esc_html_e( 'Scheduled', 'content-planner-pro' ); ?></td>
+                                        <td><?php esc_html_e( 'Content approved and scheduled for publication', 'content-planner-pro' ); ?></td>
                                         <td><code>future</code></td>
                                     </tr>
                                     <tr>
-                                        <td><span style="color:#22c55e;">&#9679;</span> Publi&eacute;</td>
-                                        <td>Contenu publi&eacute; et visible sur le site</td>
+                                        <td><span style="color:#22c55e;">&#9679;</span> <?php esc_html_e( 'Published', 'content-planner-pro' ); ?></td>
+                                        <td><?php esc_html_e( 'Content published and visible on the site', 'content-planner-pro' ); ?></td>
                                         <td><code>publish</code></td>
                                     </tr>
                                 </tbody>
@@ -468,28 +491,31 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                         </div>
 
                         <div class="cpp-admin-section">
-                            <h2>Raccourcis clavier</h2>
+                            <h2><?php esc_html_e( 'Keyboard Shortcuts', 'content-planner-pro' ); ?></h2>
                             <table class="widefat striped" style="max-width:500px;">
                                 <thead>
-                                    <tr><th>Raccourci</th><th>Action</th></tr>
+                                    <tr>
+                                        <th><?php esc_html_e( 'Shortcut', 'content-planner-pro' ); ?></th>
+                                        <th><?php esc_html_e( 'Action', 'content-planner-pro' ); ?></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td><kbd>&larr;</kbd></td><td>Mois pr&eacute;c&eacute;dent</td></tr>
-                                    <tr><td><kbd>&rarr;</kbd></td><td>Mois suivant</td></tr>
-                                    <tr><td><kbd>T</kbd></td><td>Revenir au mois en cours (Today)</td></tr>
-                                    <tr><td><kbd>N</kbd></td><td>Nouveau contenu</td></tr>
-                                    <tr><td><kbd>Esc</kbd></td><td>Fermer le panneau d'&eacute;dition</td></tr>
-                                    <tr><td><kbd>1</kbd></td><td>Vue Calendrier</td></tr>
-                                    <tr><td><kbd>2</kbd></td><td>Vue Board</td></tr>
+                                    <tr><td><kbd>&larr;</kbd></td><td><?php esc_html_e( 'Previous month', 'content-planner-pro' ); ?></td></tr>
+                                    <tr><td><kbd>&rarr;</kbd></td><td><?php esc_html_e( 'Next month', 'content-planner-pro' ); ?></td></tr>
+                                    <tr><td><kbd>T</kbd></td><td><?php esc_html_e( 'Go to current month (Today)', 'content-planner-pro' ); ?></td></tr>
+                                    <tr><td><kbd>N</kbd></td><td><?php esc_html_e( 'New content', 'content-planner-pro' ); ?></td></tr>
+                                    <tr><td><kbd>Esc</kbd></td><td><?php esc_html_e( 'Close edit panel', 'content-planner-pro' ); ?></td></tr>
+                                    <tr><td><kbd>1</kbd></td><td><?php esc_html_e( 'Calendar view', 'content-planner-pro' ); ?></td></tr>
+                                    <tr><td><kbd>2</kbd></td><td><?php esc_html_e( 'Board view', 'content-planner-pro' ); ?></td></tr>
                                 </tbody>
                             </table>
                         </div>
 
                         <div class="cpp-admin-section" style="background:#fefce8;border-color:#fde68a;">
-                            <h2 style="border-color:#fde68a;">Support</h2>
-                            <p style="color:#374151;">Pour toute question ou probl&egrave;me :</p>
+                            <h2 style="border-color:#fde68a;"><?php esc_html_e( 'Support', 'content-planner-pro' ); ?></h2>
+                            <p style="color:#374151;"><?php esc_html_e( 'For any questions or issues:', 'content-planner-pro' ); ?></p>
                             <ul style="list-style:none;padding:0;line-height:2.2;">
-                                <li>Email : <a href="mailto:contact@khalid.digital">contact@khalid.digital</a></li>
+                                <li><?php /* translators: %s: support email link */ printf( esc_html__( 'Email: %s', 'content-planner-pro' ), '<a href="mailto:contact@khalid.digital">contact@khalid.digital</a>' ); ?></li>
                             </ul>
                         </div>
 
@@ -542,7 +568,7 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                 var key = $('#cpp-license-key').val().trim();
                 if (!key) return;
 
-                btn.prop('disabled', true).text('Activation...');
+                btn.prop('disabled', true).text('<?php echo esc_js( __( 'Activating...', 'content-planner-pro' ) ); ?>');
 
                 $.post(ajaxurl, {
                     action: 'cpp_activate_license',
@@ -554,18 +580,18 @@ $masked = substr($license_key, 0, 4) . '-****-****-' . substr($license_key, -4);
                         setTimeout(function() { location.reload(); }, 1000);
                     } else {
                         $('#cpp-license-message').html('<div class="notice notice-error inline"><p>' + response.data + '</p></div>').show();
-                        btn.prop('disabled', false).text('Activer la licence');
+                        btn.prop('disabled', false).text('<?php echo esc_js( __( 'Activate license', 'content-planner-pro' ) ); ?>');
                     }
                 }).fail(function() {
-                    $('#cpp-license-message').html('<div class="notice notice-error inline"><p>Erreur de connexion.</p></div>').show();
-                    btn.prop('disabled', false).text('Activer la licence');
+                    $('#cpp-license-message').html('<div class="notice notice-error inline"><p><?php echo esc_js( __( 'Connection error.', 'content-planner-pro' ) ); ?></p></div>').show();
+                    btn.prop('disabled', false).text('<?php echo esc_js( __( 'Activate license', 'content-planner-pro' ) ); ?>');
                 });
             });
 
             $('#cpp-deactivate-btn').on('click', function() {
-                if (!confirm('Désactiver la licence sur ce domaine ?')) return;
+                if (!confirm('<?php echo esc_js( __( 'Deactivate the license on this domain?', 'content-planner-pro' ) ); ?>')) return;
                 var btn = $(this);
-                btn.prop('disabled', true).text('Désactivation...');
+                btn.prop('disabled', true).text('<?php echo esc_js( __( 'Deactivating...', 'content-planner-pro' ) ); ?>');
 
                 $.post(ajaxurl, {
                     action: 'cpp_deactivate_license',
@@ -591,11 +617,11 @@ function cpp_settings_defaults() {
         'first_day'        => '1',
         'show_published'   => '1',
         'statuses'         => [
-            ['slug' => 'idea',      'label' => 'Idée',      'color' => '#94a3b8', 'icon' => "\xF0\x9F\x92\xA1", 'wp_status' => 'draft'],
-            ['slug' => 'drafting',  'label' => 'Rédaction',  'color' => '#f59e0b', 'icon' => "\xE2\x9C\x8F\xEF\xB8\x8F",  'wp_status' => 'draft'],
-            ['slug' => 'review',    'label' => 'Relecture',  'color' => '#f97316', 'icon' => "\xF0\x9F\x91\x81\xEF\xB8\x8F",  'wp_status' => 'pending'],
-            ['slug' => 'scheduled', 'label' => 'Planifié',   'color' => '#3b82f6', 'icon' => "\xF0\x9F\x93\x85", 'wp_status' => 'future'],
-            ['slug' => 'published', 'label' => 'Publié',     'color' => '#22c55e', 'icon' => "\xE2\x9C\x85", 'wp_status' => 'publish'],
+            ['slug' => 'idea',      'label' => __( 'Idea', 'content-planner-pro' ),      'color' => '#94a3b8', 'icon' => "\xF0\x9F\x92\xA1", 'wp_status' => 'draft'],
+            ['slug' => 'drafting',  'label' => __( 'Drafting', 'content-planner-pro' ),  'color' => '#f59e0b', 'icon' => "\xE2\x9C\x8F\xEF\xB8\x8F",  'wp_status' => 'draft'],
+            ['slug' => 'review',    'label' => __( 'Review', 'content-planner-pro' ),    'color' => '#f97316', 'icon' => "\xF0\x9F\x91\x81\xEF\xB8\x8F",  'wp_status' => 'pending'],
+            ['slug' => 'scheduled', 'label' => __( 'Scheduled', 'content-planner-pro' ), 'color' => '#3b82f6', 'icon' => "\xF0\x9F\x93\x85", 'wp_status' => 'future'],
+            ['slug' => 'published', 'label' => __( 'Published', 'content-planner-pro' ), 'color' => '#22c55e', 'icon' => "\xE2\x9C\x85", 'wp_status' => 'publish'],
         ],
     ];
 }

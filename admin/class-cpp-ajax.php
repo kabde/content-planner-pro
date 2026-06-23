@@ -18,7 +18,7 @@ class CPP_Ajax {
     public function get_posts() {
         check_ajax_referer( 'cpp_nonce', 'nonce' );
         if ( ! current_user_can( CPP_CAPABILITY ) ) {
-            wp_send_json_error( 'Permission refusée.' );
+            wp_send_json_error( __( 'Permission denied.', 'content-planner-pro' ) );
         }
 
         $year  = absint( $_GET['year']  ?? date( 'Y' ) );
@@ -62,7 +62,7 @@ class CPP_Ajax {
     public function create_post() {
         check_ajax_referer( 'cpp_nonce', 'nonce' );
         if ( ! current_user_can( CPP_CAPABILITY ) ) {
-            wp_send_json_error( 'Permission refusée.' );
+            wp_send_json_error( __( 'Permission denied.', 'content-planner-pro' ) );
         }
 
         $title            = sanitize_text_field( wp_unslash( $_POST['title'] ?? '' ) );
@@ -70,12 +70,12 @@ class CPP_Ajax {
         $editorial_status = sanitize_key( $_POST['editorial_status'] ?? 'idea' );
 
         if ( empty( $title ) ) {
-            wp_send_json_error( 'Le titre est requis.' );
+            wp_send_json_error( __( 'Title is required.', 'content-planner-pro' ) );
         }
 
         // Validate date format
         if ( $date && ! preg_match( '/^\d{4}-\d{2}-\d{2}/', $date ) ) {
-            wp_send_json_error( 'Format de date invalide.' );
+            wp_send_json_error( __( 'Invalid date format.', 'content-planner-pro' ) );
         }
 
         // Ensure we have a full datetime
@@ -114,12 +114,12 @@ class CPP_Ajax {
     public function update_post() {
         check_ajax_referer( 'cpp_nonce', 'nonce' );
         if ( ! current_user_can( CPP_CAPABILITY ) ) {
-            wp_send_json_error( 'Permission refusée.' );
+            wp_send_json_error( __( 'Permission denied.', 'content-planner-pro' ) );
         }
 
         $post_id = absint( $_POST['post_id'] ?? 0 );
         if ( ! $post_id || ! get_post( $post_id ) ) {
-            wp_send_json_error( 'Contenu introuvable.' );
+            wp_send_json_error( __( 'Content not found.', 'content-planner-pro' ) );
         }
 
         $post_data = [ 'ID' => $post_id ];
@@ -209,18 +209,18 @@ class CPP_Ajax {
     public function move_post() {
         check_ajax_referer( 'cpp_nonce', 'nonce' );
         if ( ! current_user_can( CPP_CAPABILITY ) ) {
-            wp_send_json_error( 'Permission refusée.' );
+            wp_send_json_error( __( 'Permission denied.', 'content-planner-pro' ) );
         }
 
         $post_id  = absint( $_POST['post_id'] ?? 0 );
         $new_date = sanitize_text_field( $_POST['new_date'] ?? '' );
 
         if ( ! $post_id || ! get_post( $post_id ) ) {
-            wp_send_json_error( 'Contenu introuvable.' );
+            wp_send_json_error( __( 'Content not found.', 'content-planner-pro' ) );
         }
 
         if ( ! preg_match( '/^\d{4}-\d{2}-\d{2}$/', $new_date ) ) {
-            wp_send_json_error( 'Format de date invalide.' );
+            wp_send_json_error( __( 'Invalid date format.', 'content-planner-pro' ) );
         }
 
         // Preserve existing time
@@ -244,18 +244,18 @@ class CPP_Ajax {
     public function change_status() {
         check_ajax_referer( 'cpp_nonce', 'nonce' );
         if ( ! current_user_can( CPP_CAPABILITY ) ) {
-            wp_send_json_error( 'Permission refusée.' );
+            wp_send_json_error( __( 'Permission denied.', 'content-planner-pro' ) );
         }
 
         $post_id    = absint( $_POST['post_id'] ?? 0 );
         $new_status = sanitize_key( $_POST['new_status'] ?? '' );
 
         if ( ! $post_id || ! get_post( $post_id ) ) {
-            wp_send_json_error( 'Contenu introuvable.' );
+            wp_send_json_error( __( 'Content not found.', 'content-planner-pro' ) );
         }
 
         if ( empty( $new_status ) ) {
-            wp_send_json_error( 'Statut requis.' );
+            wp_send_json_error( __( 'Status is required.', 'content-planner-pro' ) );
         }
 
         update_post_meta( $post_id, '_cpp_editorial_status', $new_status );

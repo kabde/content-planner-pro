@@ -31,13 +31,13 @@ function cpp_is_licensed() {
 function cpp_activate_license( $key ) {
     $attempts = (int) get_transient( 'cpp_license_attempts' );
     if ( $attempts >= 5 ) {
-        return [ 'success' => false, 'message' => 'Trop de tentatives. Réessayez dans une minute.' ];
+        return [ 'success' => false, 'message' => __( 'Too many attempts. Try again in one minute.', 'content-planner-pro' ) ];
     }
     set_transient( 'cpp_license_attempts', $attempts + 1, MINUTE_IN_SECONDS );
 
     $key = strtoupper( sanitize_text_field( trim( $key ) ) );
     if ( ! preg_match( '/^CPP-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/', $key ) ) {
-        return [ 'success' => false, 'message' => 'Format de licence invalide.' ];
+        return [ 'success' => false, 'message' => __( 'Invalid license format.', 'content-planner-pro' ) ];
     }
 
     $response = wp_remote_post( CPP_API_URL . '/activate', [
@@ -52,7 +52,7 @@ function cpp_activate_license( $key ) {
 
     if ( is_wp_error( $response ) ) {
         error_log( '[CPP] License activation error: ' . $response->get_error_message() );
-        return [ 'success' => false, 'message' => 'Erreur de connexion: ' . $response->get_error_message() ];
+        return [ 'success' => false, 'message' => __( 'Connection error: ', 'content-planner-pro' ) . $response->get_error_message() ];
     }
 
     $body = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -65,10 +65,10 @@ function cpp_activate_license( $key ) {
             update_option( 'cpp_license_expires_at', sanitize_text_field( $body['expires_at'] ) );
         }
         set_transient( 'cpp_license_valid', 1, 72 * HOUR_IN_SECONDS );
-        return [ 'success' => true, 'message' => $body['message'] ?? 'Licence activée.' ];
+        return [ 'success' => true, 'message' => $body['message'] ?? __( 'License activated.', 'content-planner-pro' ) ];
     }
 
-    return [ 'success' => false, 'message' => $body['message'] ?? 'Activation échouée.' ];
+    return [ 'success' => false, 'message' => $body['message'] ?? __( 'Activation failed.', 'content-planner-pro' ) ];
 }
 
 /**
@@ -190,7 +190,11 @@ function cpp_admin_notice_no_license() {
 
     echo '<div class="notice notice-warning"><p>';
     echo '<strong>Content Planner Pro</strong> — ';
-    echo 'Veuillez <a href="' . esc_url( admin_url( 'admin.php?page=cpp-settings' ) ) . '">activer votre licence</a> pour utiliser le plugin.';
+    printf(
+        /* translators: %s: URL to settings page */
+        __( 'Please <a href="%s">activate your license</a> to use the plugin.', 'content-planner-pro' ),
+        esc_url( admin_url( 'admin.php?page=cpp-settings' ) )
+    );
     echo '</p></div>';
 }
 add_action( 'admin_notices', 'cpp_admin_notice_no_license' );
@@ -205,9 +209,27 @@ function cpp_admin_notice_expiring() {
     if ( $screen && $screen->id === 'toplevel_page_cpp-settings' ) return;
 
     if ( $days <= 0 ) {
-        echo '<div class="notice notice-error"><p><strong>Content Planner Pro</strong> — Votre licence a expir&eacute;. <a href="' . esc_url( admin_url( 'admin.php?page=cpp-settings' ) ) . '">Renouveler</a></p></div>';
+        echo '<div class="notice notice-error"><p><strong>Content Planner Pro</strong> — ';
+        printf(
+            /* translators: %s: URL to settings page */
+            __( 'Your license has expired. <a href="%s">Renew</a>', 'content-planner-pro' ),
+            esc_url( admin_url( 'admin.php?page=cpp-settings' ) )
+        );
+        echo '</p></div>';
     } else {
-        echo '<div class="notice notice-warning"><p><strong>Content Planner Pro</strong> — Votre licence expire dans ' . $days . ' jour' . ($days > 1 ? 's' : '') . '. <a href="' . esc_url( admin_url( 'admin.php?page=cpp-settings' ) ) . '">Voir</a></p></div>';
+        echo '<div class="notice notice-warning"><p><strong>Content Planner Pro</strong> — ';
+        printf(
+            /* translators: 1: number of days, 2: URL to settings page */
+            _n(
+                'Your license expires in %1$d day. <a href="%2$s">View</a>',
+                'Your license expires in %1$d days. <a href="%2$s">View</a>',
+                $days,
+                'content-planner-pro'
+            ),
+            $days,
+            esc_url( admin_url( 'admin.php?page=cpp-settings' ) )
+        );
+        echo '</p></div>';
     }
 }
 add_action( 'admin_notices', 'cpp_admin_notice_expiring' );
@@ -217,7 +239,7 @@ add_action( 'admin_notices', 'cpp_admin_notice_expiring' );
  */
 function cpp_ajax_activate_license() {
     check_ajax_referer( 'cpp_license_nonce', 'nonce' );
-    if ( ! current_user_can( defined('CPP_CAPABILITY') ? CPP_CAPABILITY : 'manage_options' ) ) wp_send_json_error( 'Permission refusée.' );
+    if ( ! current_user_can( defined('CPP_CAPABILITY') ? CPP_CAPABILITY : 'manage_options' ) ) wp_send_json_error( __( 'Permission denied.', 'content-planner-pro' ) );
 
     $key = isset( $_POST['license_key'] ) ? sanitize_text_field( wp_unslash( $_POST['license_key'] ) ) : '';
     $result = cpp_activate_license( $key );
@@ -232,10 +254,10 @@ add_action( 'wp_ajax_cpp_activate_license', 'cpp_ajax_activate_license' );
 
 function cpp_ajax_deactivate_license() {
     check_ajax_referer( 'cpp_license_nonce', 'nonce' );
-    if ( ! current_user_can( defined('CPP_CAPABILITY') ? CPP_CAPABILITY : 'manage_options' ) ) wp_send_json_error( 'Permission refusée.' );
+    if ( ! current_user_can( defined('CPP_CAPABILITY') ? CPP_CAPABILITY : 'manage_options' ) ) wp_send_json_error( __( 'Permission denied.', 'content-planner-pro' ) );
 
     cpp_deactivate_license();
-    wp_send_json_success( 'Licence désactivée.' );
+    wp_send_json_success( __( 'License deactivated.', 'content-planner-pro' ) );
 }
 add_action( 'wp_ajax_cpp_deactivate_license', 'cpp_ajax_deactivate_license' );
 

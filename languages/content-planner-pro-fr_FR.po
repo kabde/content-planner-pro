@@ -1,0 +1,611 @@
+# French translation for Content Planner Pro
+# Copyright (C) 2026 Abderrahim KHALID
+# This file is distributed under the same license as the Content Planner Pro plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Content Planner Pro 2.0.0\n"
+"Report-Msgid-Bugs-To: contact@khalid.digital\n"
+"POT-Creation-Date: 2026-06-22 00:00+0000\n"
+"PO-Revision-Date: 2026-06-22 00:00+0000\n"
+"Last-Translator: Abderrahim KHALID <contact@khalid.digital>\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. ============================================================
+#. License strings (inc/license.php)
+#. ============================================================
+
+#: inc/license.php
+msgid "Too many attempts. Try again in one minute."
+msgstr "Trop de tentatives. Réessayez dans une minute."
+
+#: inc/license.php
+msgid "Invalid license format."
+msgstr "Format de licence invalide."
+
+#: inc/license.php
+msgid "Connection error: "
+msgstr "Erreur de connexion : "
+
+#: inc/license.php
+msgid "License activated."
+msgstr "Licence activée."
+
+#: inc/license.php
+msgid "Activation failed."
+msgstr "Activation échouée."
+
+#: inc/license.php
+msgid "Permission denied."
+msgstr "Permission refusée."
+
+#: inc/license.php
+msgid "License deactivated."
+msgstr "Licence désactivée."
+
+#: inc/license.php
+#, php-format
+msgid "Please <a href=\"%s\">activate your license</a> to use the plugin."
+msgstr "Veuillez <a href=\"%s\">activer votre licence</a> pour utiliser le plugin."
+
+#: inc/license.php
+#, php-format
+msgid "Your license has expired. <a href=\"%s\">Renew</a>"
+msgstr "Votre licence a expiré. <a href=\"%s\">Renouveler</a>"
+
+#: inc/license.php
+#, php-format
+msgid "Your license expires in %1$d day. <a href=\"%2$s\">View</a>"
+msgid_plural "Your license expires in %1$d days. <a href=\"%2$s\">View</a>"
+msgstr[0] "Votre licence expire dans %1$d jour. <a href=\"%2$s\">Voir</a>"
+msgstr[1] "Votre licence expire dans %1$d jours. <a href=\"%2$s\">Voir</a>"
+
+#. ============================================================
+#. AJAX strings (admin/class-cpp-ajax.php)
+#. ============================================================
+
+#: admin/class-cpp-ajax.php
+msgid "Title is required."
+msgstr "Le titre est requis."
+
+#: admin/class-cpp-ajax.php
+msgid "Invalid date format."
+msgstr "Format de date invalide."
+
+#: admin/class-cpp-ajax.php
+msgid "Content not found."
+msgstr "Contenu introuvable."
+
+#: admin/class-cpp-ajax.php
+msgid "Status is required."
+msgstr "Statut requis."
+
+#. ============================================================
+#. Settings page (admin/class-cpp-settings.php)
+#. ============================================================
+
+#: admin/class-cpp-settings.php
+msgid "Settings"
+msgstr "Réglages"
+
+#: admin/class-cpp-settings.php
+msgid "You do not have sufficient permissions."
+msgstr "Vous n'avez pas les permissions suffisantes."
+
+#: admin/class-cpp-settings.php
+msgid "License"
+msgstr "Licence"
+
+#: admin/class-cpp-settings.php
+msgid "General"
+msgstr "Général"
+
+#: admin/class-cpp-settings.php
+msgid "Statuses"
+msgstr "Statuts"
+
+#: admin/class-cpp-settings.php
+msgid "Documentation"
+msgstr "Documentation"
+
+#: admin/class-cpp-settings.php
+msgid "License Active"
+msgstr "Licence Active"
+
+#: admin/class-cpp-settings.php
+msgid "License key"
+msgstr "Clé de licence"
+
+#: admin/class-cpp-settings.php
+msgid "Domain"
+msgstr "Domaine"
+
+#: admin/class-cpp-settings.php
+msgid "Expiration"
+msgstr "Expiration"
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "Expired on %s"
+msgstr "Expirée le %s"
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "%1$s (%2$d day remaining)"
+msgid_plural "%1$s (%2$d days remaining)"
+msgstr[0] "%1$s (%2$d jour restant)"
+msgstr[1] "%1$s (%2$d jours restants)"
+
+#: admin/class-cpp-settings.php
+msgid "Lifetime (no expiration)"
+msgstr "Lifetime (pas d'expiration)"
+
+#: admin/class-cpp-settings.php
+msgid "Deactivate license"
+msgstr "Désactiver la licence"
+
+#: admin/class-cpp-settings.php
+msgid "Activate your license"
+msgstr "Activez votre licence"
+
+#: admin/class-cpp-settings.php
+msgid "Enter your license key to activate Content Planner Pro."
+msgstr "Entrez votre clé de licence pour activer Content Planner Pro."
+
+#: admin/class-cpp-settings.php
+msgid "Activate license"
+msgstr "Activer la licence"
+
+#: admin/class-cpp-settings.php
+msgid "General settings"
+msgstr "Paramètres généraux"
+
+#: admin/class-cpp-settings.php
+msgid "Content types"
+msgstr "Types de contenu"
+
+#: admin/class-cpp-settings.php
+msgid "Select the content types to display in the calendar."
+msgstr "Sélectionnez les types de contenu à afficher dans le calendrier."
+
+#: admin/class-cpp-settings.php
+msgid "Default view"
+msgstr "Vue par défaut"
+
+#: admin/class-cpp-settings.php
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: admin/class-cpp-settings.php
+msgid "Board (Kanban)"
+msgstr "Board (Kanban)"
+
+#: admin/class-cpp-settings.php
+msgid "First day of the week"
+msgstr "Premier jour de la semaine"
+
+#: admin/class-cpp-settings.php
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: admin/class-cpp-settings.php
+msgid "Monday"
+msgstr "Lundi"
+
+#: admin/class-cpp-settings.php
+msgid "Show published"
+msgstr "Afficher les publiés"
+
+#: admin/class-cpp-settings.php
+msgid "Show already published content in the calendar"
+msgstr "Afficher les contenus déjà publiés dans le calendrier"
+
+#: admin/class-cpp-settings.php
+msgid "Save"
+msgstr "Enregistrer"
+
+#: admin/class-cpp-settings.php
+msgid "Editorial statuses"
+msgstr "Statuts éditoriaux"
+
+#: admin/class-cpp-settings.php
+msgid "Editorial statuses allow you to track the progress of your content. Each status maps to a native WordPress status."
+msgstr "Les statuts éditoriaux permettent de suivre l'avancement de vos contenus. Chaque statut est mappé vers un statut WordPress natif."
+
+#: admin/class-cpp-settings.php
+msgid "Icon"
+msgstr "Icône"
+
+#: admin/class-cpp-settings.php
+msgid "Label"
+msgstr "Label"
+
+#: admin/class-cpp-settings.php
+msgid "Slug"
+msgstr "Slug"
+
+#: admin/class-cpp-settings.php
+msgid "WordPress status"
+msgstr "Statut WordPress"
+
+#: admin/class-cpp-settings.php
+msgid "Statuses are not editable in this version. A future update will allow customizing statuses, colors, and icons."
+msgstr "Les statuts ne sont pas modifiables dans cette version. Une future mise à jour permettra de personnaliser les statuts, couleurs et icônes."
+
+#: admin/class-cpp-settings.php
+msgid "Calendar View"
+msgstr "Vue Calendrier"
+
+#: admin/class-cpp-settings.php
+msgid "The calendar displays your content month by month. Each piece of content appears on the date it is scheduled."
+msgstr "Le calendrier affiche vos contenus mois par mois. Chaque contenu apparaît sur la date à laquelle il est planifié."
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "Navigate between months using the %s arrows"
+msgstr "Naviguez entre les mois avec les flèches %s"
+
+#: admin/class-cpp-settings.php
+msgid "Click on an empty date to create new content"
+msgstr "Cliquez sur une date vide pour créer un nouveau contenu"
+
+#: admin/class-cpp-settings.php
+msgid "Click on content to open the detail / quick edit panel"
+msgstr "Cliquez sur un contenu pour ouvrir le panneau de détail / édition rapide"
+
+#: admin/class-cpp-settings.php
+msgid "Content is color-coded by editorial status"
+msgstr "Les contenus sont colorés selon leur statut éditorial"
+
+#: admin/class-cpp-settings.php
+msgid "Overdue content (past deadline) is marked in %s"
+msgstr "Les contenus en retard (deadline dépassée) sont marqués en %s"
+
+#: admin/class-cpp-settings.php
+msgid "red"
+msgstr "rouge"
+
+#: admin/class-cpp-settings.php
+msgid "Board View (Kanban)"
+msgstr "Vue Board (Kanban)"
+
+#: admin/class-cpp-settings.php
+msgid "The board organizes your content into columns by editorial status."
+msgstr "Le board organise vos contenus en colonnes selon leur statut éditorial."
+
+#: admin/class-cpp-settings.php
+msgid "Each column represents a status (Idea, Drafting, Review, Scheduled, Published)"
+msgstr "Chaque colonne représente un statut (Idée, Rédaction, Relecture, Planifié, Publié)"
+
+#: admin/class-cpp-settings.php
+msgid "Drag and drop content between columns to change its status"
+msgstr "Glissez-déposez un contenu entre les colonnes pour changer son statut"
+
+#: admin/class-cpp-settings.php
+msgid "The number of items per column is shown in the header"
+msgstr "Le nombre de contenus par colonne est affiché dans l'en-tête"
+
+#: admin/class-cpp-settings.php
+msgid "Drag & Drop"
+msgstr "Drag & Drop"
+
+#: admin/class-cpp-settings.php
+msgid "Drag and drop works in both views:"
+msgstr "Le glisser-déposer fonctionne dans les deux vues :"
+
+#: admin/class-cpp-settings.php
+msgid "Calendar: move content to another date to change its publication date"
+msgstr "Calendrier : déplacez un contenu vers une autre date pour changer sa date de publication"
+
+#: admin/class-cpp-settings.php
+msgid "Board: move content to another column to change its status"
+msgstr "Board : déplacez un contenu vers une autre colonne pour changer son statut"
+
+#: admin/class-cpp-settings.php
+msgid "Changes are saved automatically via AJAX"
+msgstr "Les modifications sont sauvegardées automatiquement via AJAX"
+
+#: admin/class-cpp-settings.php
+msgid "Quick Edit"
+msgstr "Édition rapide"
+
+#: admin/class-cpp-settings.php
+msgid "Click on content to open the quick edit panel. You can edit:"
+msgstr "Cliquez sur un contenu pour ouvrir le panneau d'édition rapide. Vous pouvez modifier :"
+
+#: admin/class-cpp-settings.php
+msgid "Content title"
+msgstr "Titre du contenu"
+
+#: admin/class-cpp-settings.php
+msgid "Editorial status (Idea > Drafting > Review > Scheduled > Published)"
+msgstr "Statut éditorial (Idée > Rédaction > Relecture > Planifié > Publié)"
+
+#: admin/class-cpp-settings.php
+msgid "Scheduled publication date"
+msgstr "Date planifiée de publication"
+
+#: admin/class-cpp-settings.php
+msgid "Deadline (writing due date)"
+msgstr "Deadline (date limite de rédaction)"
+
+#: admin/class-cpp-settings.php
+msgid "Assigned to (responsible author)"
+msgstr "Assigné à (auteur responsable)"
+
+#: admin/class-cpp-settings.php
+msgid "Category"
+msgstr "Catégorie"
+
+#: admin/class-cpp-settings.php
+msgid "Priority (low, normal, high, urgent)"
+msgstr "Priorité (basse, normale, haute, urgente)"
+
+#: admin/class-cpp-settings.php
+msgid "Internal notes"
+msgstr "Notes internes"
+
+#: admin/class-cpp-settings.php
+msgid "Content Creation"
+msgstr "Création de contenu"
+
+#: admin/class-cpp-settings.php
+msgid "Two ways to create content:"
+msgstr "Deux façons de créer du contenu :"
+
+#: admin/class-cpp-settings.php
+msgid "From the calendar: click on an empty date. A new draft is created with that date."
+msgstr "Depuis le calendrier : cliquez sur une date vide. Un nouveau brouillon est créé avec cette date."
+
+#: admin/class-cpp-settings.php
+msgid "From the board: click the + button in a status column."
+msgstr "Depuis le board : cliquez sur le bouton + dans une colonne de statut."
+
+#: admin/class-cpp-settings.php
+msgid "Content is created as a WordPress draft with the \"Idea\" editorial status by default."
+msgstr "Le contenu est créé comme brouillon WordPress avec le statut éditorial « Idée » par défaut."
+
+#: admin/class-cpp-settings.php
+msgid "Editorial Statuses"
+msgstr "Statuts éditoriaux"
+
+#: admin/class-cpp-settings.php
+msgid "Status"
+msgstr "Statut"
+
+#: admin/class-cpp-settings.php
+msgid "Description"
+msgstr "Description"
+
+#: admin/class-cpp-settings.php
+msgid "Idea"
+msgstr "Idée"
+
+#: admin/class-cpp-settings.php
+msgid "Content in the ideation phase, not yet started"
+msgstr "Contenu en phase d'idéation, pas encore commencé"
+
+#: admin/class-cpp-settings.php
+msgid "Drafting"
+msgstr "Rédaction"
+
+#: admin/class-cpp-settings.php
+msgid "Content currently being written"
+msgstr "Contenu en cours de rédaction"
+
+#: admin/class-cpp-settings.php
+msgid "Review"
+msgstr "Relecture"
+
+#: admin/class-cpp-settings.php
+msgid "Content finished, awaiting approval"
+msgstr "Contenu terminé, en attente de validation"
+
+#: admin/class-cpp-settings.php
+msgid "Scheduled"
+msgstr "Planifié"
+
+#: admin/class-cpp-settings.php
+msgid "Content approved and scheduled for publication"
+msgstr "Contenu validé et planifié pour publication"
+
+#: admin/class-cpp-settings.php
+msgid "Published"
+msgstr "Publié"
+
+#: admin/class-cpp-settings.php
+msgid "Content published and visible on the site"
+msgstr "Contenu publié et visible sur le site"
+
+#: admin/class-cpp-settings.php
+msgid "Keyboard Shortcuts"
+msgstr "Raccourcis clavier"
+
+#: admin/class-cpp-settings.php
+msgid "Shortcut"
+msgstr "Raccourci"
+
+#: admin/class-cpp-settings.php
+msgid "Action"
+msgstr "Action"
+
+#: admin/class-cpp-settings.php
+msgid "Previous month"
+msgstr "Mois précédent"
+
+#: admin/class-cpp-settings.php
+msgid "Next month"
+msgstr "Mois suivant"
+
+#: admin/class-cpp-settings.php
+msgid "Go to current month (Today)"
+msgstr "Revenir au mois en cours (Aujourd'hui)"
+
+#: admin/class-cpp-settings.php
+msgid "New content"
+msgstr "Nouveau contenu"
+
+#: admin/class-cpp-settings.php
+msgid "Close edit panel"
+msgstr "Fermer le panneau d'édition"
+
+#: admin/class-cpp-settings.php
+msgid "Calendar view"
+msgstr "Vue Calendrier"
+
+#: admin/class-cpp-settings.php
+msgid "Board view"
+msgstr "Vue Board"
+
+#: admin/class-cpp-settings.php
+msgid "Support"
+msgstr "Support"
+
+#: admin/class-cpp-settings.php
+msgid "For any questions or issues:"
+msgstr "Pour toute question ou problème :"
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "Email: %s"
+msgstr "Email : %s"
+
+#: admin/class-cpp-settings.php
+msgid "Activating..."
+msgstr "Activation..."
+
+#: admin/class-cpp-settings.php
+msgid "Connection error."
+msgstr "Erreur de connexion."
+
+#: admin/class-cpp-settings.php
+msgid "Deactivate the license on this domain?"
+msgstr "Désactiver la licence sur ce domaine ?"
+
+#: admin/class-cpp-settings.php
+msgid "Deactivating..."
+msgstr "Désactivation..."
+
+#. ============================================================
+#. Premium / Worker strings (calendar view)
+#. ============================================================
+
+#: worker/premium-calendar
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: worker/premium-calendar
+msgid "Board"
+msgstr "Board"
+
+#: worker/premium-calendar
+msgid "All statuses"
+msgstr "Tous les statuts"
+
+#: worker/premium-calendar
+msgid "All authors"
+msgstr "Tous les auteurs"
+
+#: worker/premium-calendar
+msgid "All categories"
+msgstr "Toutes les catégories"
+
+#: worker/premium-calendar
+msgid "+ Add content quickly..."
+msgstr "+ Ajouter un contenu rapidement..."
+
+#: worker/premium-calendar
+msgid "Create"
+msgstr "Créer"
+
+#: worker/premium-calendar
+msgid "Edit"
+msgstr "Modifier"
+
+#: worker/premium-calendar
+msgid "Title"
+msgstr "Titre"
+
+#: worker/premium-calendar
+msgid "Priority"
+msgstr "Priorité"
+
+#: worker/premium-calendar
+msgid "Low"
+msgstr "Basse"
+
+#: worker/premium-calendar
+msgid "Medium"
+msgstr "Moyenne"
+
+#: worker/premium-calendar
+msgid "High"
+msgstr "Haute"
+
+#: worker/premium-calendar
+msgid "Publication date"
+msgstr "Date de publication"
+
+#: worker/premium-calendar
+msgid "Deadline"
+msgstr "Deadline"
+
+#: worker/premium-calendar
+msgid "Author"
+msgstr "Auteur"
+
+#: worker/premium-calendar
+msgid "Notes"
+msgstr "Notes"
+
+#: worker/premium-calendar
+msgid "Open editor"
+msgstr "Ouvrir l'éditeur"
+
+#: worker/premium-calendar
+msgid "Cancel"
+msgstr "Annuler"
+
+#: worker/premium-calendar
+msgid "Date updated"
+msgstr "Date mise à jour"
+
+#: worker/premium-calendar
+msgid "Status updated"
+msgstr "Statut mis à jour"
+
+#: worker/premium-calendar
+msgid "Content created"
+msgstr "Contenu créé"
+
+#: worker/premium-calendar
+msgid "Created"
+msgstr "Créé"
+
+#: worker/premium-calendar
+msgid "Saved"
+msgstr "Enregistré"
+
+#: worker/premium-calendar
+msgid "No content"
+msgstr "Aucun contenu"
+
+#: worker/premium-calendar
+msgid "Edit:"
+msgstr "Modifier :"
+
+#: worker/premium-calendar
+msgid "Content title:"
+msgstr "Titre du contenu :"
+
+#: worker/premium-calendar
+msgid "Title..."
+msgstr "Titre..."
+
+#: worker/premium-calendar
+msgid "Add"
+msgstr "Ajouter"

@@ -1,0 +1,612 @@
+# Copyright (C) 2026 Abderrahim KHALID
+# This file is distributed under the same license as the Content Planner Pro plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Content Planner Pro 2.0.0\n"
+"Report-Msgid-Bugs-To: contact@khalid.digital\n"
+"POT-Creation-Date: 2026-06-22 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. ============================================================
+#. License strings (inc/license.php)
+#. ============================================================
+
+#: inc/license.php
+msgid "Too many attempts. Try again in one minute."
+msgstr ""
+
+#: inc/license.php
+msgid "Invalid license format."
+msgstr ""
+
+#: inc/license.php
+msgid "Connection error: "
+msgstr ""
+
+#: inc/license.php
+msgid "License activated."
+msgstr ""
+
+#: inc/license.php
+msgid "Activation failed."
+msgstr ""
+
+#: inc/license.php
+msgid "Permission denied."
+msgstr ""
+
+#: inc/license.php
+msgid "License deactivated."
+msgstr ""
+
+#: inc/license.php
+#, php-format
+msgid "Please <a href=\"%s\">activate your license</a> to use the plugin."
+msgstr ""
+
+#: inc/license.php
+#, php-format
+msgid "Your license has expired. <a href=\"%s\">Renew</a>"
+msgstr ""
+
+#: inc/license.php
+#, php-format
+msgid "Your license expires in %1$d day. <a href=\"%2$s\">View</a>"
+msgid_plural "Your license expires in %1$d days. <a href=\"%2$s\">View</a>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. ============================================================
+#. AJAX strings (admin/class-cpp-ajax.php)
+#. ============================================================
+
+#: admin/class-cpp-ajax.php
+msgid "Title is required."
+msgstr ""
+
+#: admin/class-cpp-ajax.php
+msgid "Invalid date format."
+msgstr ""
+
+#: admin/class-cpp-ajax.php
+msgid "Content not found."
+msgstr ""
+
+#: admin/class-cpp-ajax.php
+msgid "Status is required."
+msgstr ""
+
+#. ============================================================
+#. Settings page (admin/class-cpp-settings.php)
+#. ============================================================
+
+#: admin/class-cpp-settings.php
+msgid "Settings"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "You do not have sufficient permissions."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "License"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "General"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Statuses"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Documentation"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "License Active"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "License key"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Domain"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Expiration"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "Expired on %s"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "%1$s (%2$d day remaining)"
+msgid_plural "%1$s (%2$d days remaining)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-cpp-settings.php
+msgid "Lifetime (no expiration)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Deactivate license"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Activate your license"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Enter your license key to activate Content Planner Pro."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Activate license"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "General settings"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content types"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Select the content types to display in the calendar."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Default view"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Calendar"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Board (Kanban)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "First day of the week"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Sunday"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Monday"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Show published"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Show already published content in the calendar"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Save"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Editorial statuses"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Editorial statuses allow you to track the progress of your content. Each status maps to a native WordPress status."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Icon"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Label"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Slug"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "WordPress status"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Statuses are not editable in this version. A future update will allow customizing statuses, colors, and icons."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Calendar View"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "The calendar displays your content month by month. Each piece of content appears on the date it is scheduled."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "Navigate between months using the %s arrows"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Click on an empty date to create new content"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Click on content to open the detail / quick edit panel"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content is color-coded by editorial status"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Overdue content (past deadline) is marked in %s"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "red"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Board View (Kanban)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "The board organizes your content into columns by editorial status."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Each column represents a status (Idea, Drafting, Review, Scheduled, Published)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Drag and drop content between columns to change its status"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "The number of items per column is shown in the header"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Drag & Drop"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Drag and drop works in both views:"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Calendar: move content to another date to change its publication date"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Board: move content to another column to change its status"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Changes are saved automatically via AJAX"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Quick Edit"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Click on content to open the quick edit panel. You can edit:"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content title"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Editorial status (Idea > Drafting > Review > Scheduled > Published)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Scheduled publication date"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Deadline (writing due date)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Assigned to (responsible author)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Category"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Priority (low, normal, high, urgent)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Internal notes"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content Creation"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Two ways to create content:"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "From the calendar: click on an empty date. A new draft is created with that date."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "From the board: click the + button in a status column."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content is created as a WordPress draft with the \"Idea\" editorial status by default."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Editorial Statuses"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Status"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Description"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Idea"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content in the ideation phase, not yet started"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Drafting"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content currently being written"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Review"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content finished, awaiting approval"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Scheduled"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content approved and scheduled for publication"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Published"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Content published and visible on the site"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Shortcut"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Action"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Previous month"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Next month"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Go to current month (Today)"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "New content"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Close edit panel"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Calendar view"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Board view"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Support"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "For any questions or issues:"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+#, php-format
+msgid "Email: %s"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Activating..."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Connection error."
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Deactivate the license on this domain?"
+msgstr ""
+
+#: admin/class-cpp-settings.php
+msgid "Deactivating..."
+msgstr ""
+
+#. ============================================================
+#. Status label defaults (admin/class-cpp-settings.php)
+#. ============================================================
+
+#. Already defined above: Idea, Drafting, Review, Scheduled, Published
+
+#. ============================================================
+#. Premium / Worker strings (calendar view)
+#. ============================================================
+
+#: worker/premium-calendar
+msgid "Today"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Board"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "All statuses"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "All authors"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "All categories"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "+ Add content quickly..."
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Create"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Edit"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Title"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Priority"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Low"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Medium"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "High"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Publication date"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Deadline"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Author"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Notes"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Open editor"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Cancel"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Date updated"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Status updated"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Content created"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Created"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Saved"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "No content"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Edit:"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Content title:"
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Title..."
+msgstr ""
+
+#: worker/premium-calendar
+msgid "Add"
+msgstr ""
